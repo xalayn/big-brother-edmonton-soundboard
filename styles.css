@@ -1,0 +1,303 @@
+:root {
+  color: #1f2937;
+  background: #f4f5f7;
+  font-family: Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: min(100% - 32px, 960px);
+  margin: 0 auto;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0;
+}
+
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+.page-header p,
+.player-info p,
+.section-heading p {
+  margin: 0;
+  color: #6b7280;
+}
+
+a {
+  color: #1d4ed8;
+}
+
+.player-panel {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.player-screen {
+  position: relative;
+  min-height: 200px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.player-screen iframe,
+#youtube-player {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.player-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.player-info,
+.controls,
+.player-error {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.player-info {
+  position: relative;
+}
+
+.player-info .label {
+  margin-bottom: 5px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.player-info h2 {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+}
+
+#player-status {
+  font-size: 0.85rem;
+}
+
+#status-light {
+  position: absolute;
+  top: 19px;
+  right: 18px;
+  width: 10px;
+  height: 10px;
+  background: #9ca3af;
+  border-radius: 50%;
+}
+
+#status-light.is-on {
+  background: #16a34a;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.controls button,
+.sound-card,
+.player-error button {
+  padding: 10px 14px;
+  color: #1f2937;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled),
+.sound-card:hover,
+.player-error button:hover {
+  background: #f1f5f9;
+}
+
+.controls button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+#play-button {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+#play-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+#loop-button[aria-pressed="true"] {
+  color: #fff;
+  background: #166534;
+  border-color: #166534;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  color: #4b5563;
+  font-size: 0.85rem;
+}
+
+.volume input {
+  width: 120px;
+}
+
+.volume output {
+  width: 36px;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #7f1d1d;
+  background: #fef2f2;
+  border-top-color: #fecaca;
+  font-size: 0.9rem;
+}
+
+.player-error[hidden] {
+  display: none;
+}
+
+.player-error button {
+  margin-left: auto;
+  padding: 6px 9px;
+}
+
+.sound-library {
+  padding: 36px 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  margin: 0;
+}
+
+.sound-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.sound-card {
+  display: flex;
+  min-height: 82px;
+  padding: 14px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.sound-card.is-active {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.sound-card.is-active:hover {
+  background: #1d4ed8;
+}
+
+.sound-card__number {
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.sound-card__label {
+  font-weight: bold;
+}
+
+.sound-card__duration {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+footer {
+  padding: 20px 0 32px;
+  color: #6b7280;
+  font-size: 0.8rem;
+  border-top: 1px solid #d1d5db;
+}
+
+noscript {
+  display: block;
+  padding: 16px;
+  color: #7f1d1d;
+  background: #fef2f2;
+}
+
+@media (max-width: 640px) {
+  body {
+    width: min(100% - 20px, 960px);
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .volume {
+    width: 100%;
+    margin: 8px 0 0;
+  }
+
+  .volume input {
+    flex: 1;
+  }
+
+  .player-error {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .sound-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

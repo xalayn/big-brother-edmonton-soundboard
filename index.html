@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="description" content="Big Brother Edmonton event soundboard" />
+    <title>Big Brother Edmonton Soundboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="sounds.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <h1>Big Brother Edmonton Soundboard</h1>
+        <p>Choose a sound to play it.</p>
+      </div>
+      <a
+        href="https://www.youtube.com/playlist?list=PLDyM3tkdF6Bc1GP5__fnxrKU477LXqnmP"
+        target="_blank"
+        rel="noopener noreferrer"
+      >View playlist</a>
+    </header>
+
+    <main>
+      <section class="player-panel" aria-labelledby="now-playing-title">
+        <div class="player-screen">
+          <div class="player-loading" id="player-loading" aria-live="polite">
+            Loading YouTube player…
+          </div>
+          <div id="youtube-player"></div>
+        </div>
+
+        <div class="player-info">
+          <p class="label" id="now-playing-title">Now playing</p>
+          <h2 id="now-playing-name">Select a sound</h2>
+          <p id="player-status" aria-live="polite">Player is loading…</p>
+          <span id="status-light" aria-hidden="true"></span>
+        </div>
+
+        <div class="controls" aria-label="Playback controls">
+          <button id="play-button" type="button" disabled>
+            <span id="play-label">Play</span>
+          </button>
+          <button id="restart-button" type="button" disabled>Restart</button>
+          <button id="stop-button" type="button" disabled>Stop</button>
+          <button id="loop-button" type="button" aria-pressed="false" disabled>
+            Loop: <span id="loop-state">Off</span>
+          </button>
+          <label class="volume" for="volume-control">
+            Volume
+            <input id="volume-control" type="range" min="0" max="100" value="80" disabled />
+            <output id="volume-output" for="volume-control">80%</output>
+          </label>
+        </div>
+
+        <div class="player-error" id="player-error" role="alert" hidden>
+          <span id="player-error-message">This sound could not be played.</span>
+          <a id="error-youtube-link" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+            Open on YouTube
+          </a>
+          <button id="dismiss-error" type="button" aria-label="Dismiss message">Dismiss</button>
+        </div>
+      </section>
+
+      <section class="sound-library" aria-labelledby="sound-library-title">
+        <div class="section-heading">
+          <h2 id="sound-library-title">Sounds</h2>
+          <p><span id="sound-count">0</span> available</p>
+        </div>
+        <div class="sound-grid" id="sound-grid"></div>
+      </section>
+    </main>
+
+    <footer>Playback provided by YouTube.</footer>
+
+    <noscript>This page requires JavaScript.</noscript>
+  </body>
+</html>

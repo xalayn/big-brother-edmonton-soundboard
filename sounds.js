@@ -1,0 +1,98 @@
+window.SOUNDBOARD_SOUNDS = [
+  {
+    id: "NTXJpYysvNQ",
+    name: "HOH Competition",
+    youtubeTitle: "Big Brother US Head of Household Competition Music Cue",
+    duration: 145,
+  },
+  {
+    id: "1uIe1PpaUdA",
+    name: "Eviction Sting",
+    youtubeTitle: "Big Brother Eviction Music",
+    duration: 7,
+  },
+  {
+    id: "wDiw5eN9138",
+    name: "Next On…",
+    youtubeTitle: "Big Brother - Next On",
+    duration: 125,
+  },
+  {
+    id: "58UXX7yUicI",
+    name: "Theme Song",
+    youtubeTitle: "Big Brother - Theme Song",
+    duration: 41,
+  },
+  {
+    id: "lTJsNufIE5s",
+    name: "HOH Victory",
+    youtubeTitle: "Big Brother USA Soundtrack - HOH Win / Victory Theme",
+    duration: 54,
+  },
+  {
+    id: "bHEgq_ibklo",
+    name: "Celebration Classic",
+    youtubeTitle: "Big Brother Celebration Music - Season 9 to Season 20",
+    duration: 40,
+  },
+  {
+    id: "fa1FTbzgRlA",
+    name: "Nomination Ceremony",
+    youtubeTitle: "Big Brother HOH Nomination Ceremony",
+    duration: 288,
+  },
+  {
+    id: "LhRH4Mtb5wQ",
+    name: "Bring It",
+    youtubeTitle: "Big Brother USA - Music - Bring It",
+    duration: 64,
+  },
+  {
+    id: "bUJpATUcS0w",
+    name: "Post-Competition",
+    youtubeTitle: "From Big Brother - Post Competition Score",
+    duration: 51,
+  },
+  {
+    id: "4LGvg0GCHWg",
+    name: "Celebration Song",
+    youtubeTitle: "Big Brother Celebration Song",
+    duration: 45,
+  },
+  {
+    id: "qXKZSFs7O6s",
+    name: "HOH Win — Modern",
+    youtubeTitle: "Big Brother HOH Win Music BB22–Present",
+    duration: 39,
+  },
+  {
+    id: "u7Mzm_JExw8",
+    name: "Veto Music",
+    youtubeTitle: "Big Brother Veto Music (Cleaner)",
+    duration: 73,
+  },
+  {
+    id: "1jd7cJqCMAU",
+    name: "Ending Music",
+    youtubeTitle: "Big Brother Ending Music",
+    duration: 114,
+  },
+  {
+    id: "MUm5jZ_6qr8",
+    name: "Gold Record",
+    youtubeTitle: "Big Brother USA - Music - Gold Record",
+    duration: 91,
+  },
+  {
+    id: "ZnTSx0ekGD0",
+    name: "Live Vote — V2",
+    youtubeTitle: "Big Brother Live Vote Music V2",
+    duration: 188,
+  },
+  {
+    id: "pRyJL8AIHFg",
+    name: "Live Vote",
+    youtubeTitle: "Big Brother - Live Vote",
+    duration: 146,
+  },
+];
