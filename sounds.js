@@ -64,4 +64,8 @@ window.SOUNDBOARD_SOUNDS = [
     name: "Live Vote",
     url: "https://www.youtube.com/watch?v=pRyJL8AIHFg",
   },
+  {
+    name: "Mastermind Intro Speech",
+    url: "https://youtu.be/NtoD4k1x5hQ",
+  },
 ];
