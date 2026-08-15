@@ -1,7 +1,23 @@
 (() => {
   "use strict";
 
-  const sounds = Array.isArray(window.SOUNDBOARD_SOUNDS) ? window.SOUNDBOARD_SOUNDS : [];
+  const configuredSounds = Array.isArray(window.SOUNDBOARD_SOUNDS)
+    ? window.SOUNDBOARD_SOUNDS
+    : [];
+  const sounds = configuredSounds
+    .map((sound, index) => ({
+      name:
+        typeof sound.name === "string" && sound.name.trim()
+          ? sound.name.trim()
+          : `Sound ${index + 1}`,
+      url: sound.url,
+      id: getYouTubeVideoId(sound.url),
+    }))
+    .filter((sound) => {
+      if (sound.id) return true;
+      console.warn(`Skipping invalid YouTube URL for "${sound.name}".`);
+      return false;
+    });
   const PLAYER_STATES = {
     ENDED: 0,
     PLAYING: 1,
@@ -51,10 +67,39 @@
     }
   }
 
-  function formatDuration(totalSeconds) {
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = String(totalSeconds % 60).padStart(2, "0");
-    return `${minutes}:${seconds}`;
+  function getYouTubeVideoId(value) {
+    if (typeof value !== "string") return null;
+
+    const trimmedValue = value.trim();
+    if (/^[A-Za-z0-9_-]{11}$/.test(trimmedValue)) return trimmedValue;
+
+    try {
+      const url = new URL(trimmedValue);
+      const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
+      let videoId = null;
+
+      if (hostname === "youtu.be") {
+        videoId = url.pathname.split("/").filter(Boolean)[0];
+      } else if (
+        hostname === "youtube.com" ||
+        hostname.endsWith(".youtube.com") ||
+        hostname === "youtube-nocookie.com" ||
+        hostname.endsWith(".youtube-nocookie.com")
+      ) {
+        videoId = url.searchParams.get("v");
+
+        if (!videoId) {
+          const pathParts = url.pathname.split("/").filter(Boolean);
+          if (["embed", "shorts", "live"].includes(pathParts[0])) {
+            videoId = pathParts[1];
+          }
+        }
+      }
+
+      return /^[A-Za-z0-9_-]{11}$/.test(videoId || "") ? videoId : null;
+    } catch {
+      return null;
+    }
   }
 
   function escapeHtml(value) {
@@ -75,11 +120,9 @@
             type="button"
             data-sound-id="${escapeHtml(sound.id)}"
             aria-label="Play ${escapeHtml(sound.name)}"
-            title="YouTube source: ${escapeHtml(sound.youtubeTitle)}"
           >
             <span class="sound-card__number">${String(index + 1).padStart(2, "0")}</span>
             <span class="sound-card__label">${escapeHtml(sound.name)}</span>
-            <span class="sound-card__duration">${formatDuration(sound.duration)}</span>
           </button>
         `,
       )
@@ -274,9 +317,7 @@
 
   function showError(message, sound = null) {
     elements.errorMessage.textContent = message;
-    elements.errorLink.href = sound
-      ? `https://www.youtube.com/watch?v=${encodeURIComponent(sound.id)}`
-      : "https://www.youtube.com/";
+    elements.errorLink.href = sound?.url || "https://www.youtube.com/";
     elements.error.hidden = false;
   }
 
