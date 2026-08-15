@@ -14,7 +14,6 @@
     grid: document.querySelector("#sound-grid"),
     loading: document.querySelector("#player-loading"),
     nowPlaying: document.querySelector("#now-playing-name"),
-    status: document.querySelector("#player-status"),
     restart: document.querySelector("#restart-button"),
     play: document.querySelector("#play-button"),
     playLabel: document.querySelector("#play-label"),
@@ -115,7 +114,6 @@
 
     if (window.location.protocol === "file:") {
       elements.loading.textContent = "A web server is required";
-      setStatus("Open this page through GitHub Pages or a local web server.");
       showError(
         "YouTube cannot identify pages opened directly from disk. Use GitHub Pages or run a local web server.",
       );
@@ -129,7 +127,6 @@
     apiScript.async = true;
     apiScript.addEventListener("error", () => {
       elements.loading.textContent = "YouTube could not be reached";
-      setStatus("Check the internet connection, then reload this page.");
       showError("The YouTube player could not be loaded. Check the internet connection and try again.");
     });
     document.head.append(apiScript);
@@ -172,7 +169,6 @@
     setControlsDisabled(false);
     player.setVolume(Number(elements.volume.value));
     updateLoopControl();
-    setStatus("");
 
     if (pendingSound) {
       const sound = pendingSound;
@@ -186,28 +182,21 @@
       case PLAYER_STATES.ENDED:
         setPlayingState(false);
         if (loopEnabled && activeSound) {
-          setStatus(`Looping ${activeSound.name}…`);
           player.seekTo(0, true);
           player.playVideo();
-        } else {
-          setStatus(activeSound ? `${activeSound.name} finished.` : "Playback finished.");
         }
         break;
       case PLAYER_STATES.PLAYING:
         setPlayingState(true);
         hideError();
-        setStatus("Playing from YouTube");
         break;
       case PLAYER_STATES.PAUSED:
         setPlayingState(false);
-        setStatus("Paused");
         break;
       case PLAYER_STATES.BUFFERING:
-        setStatus("Buffering…");
         break;
       case PLAYER_STATES.CUED:
         setPlayingState(false);
-        setStatus("");
         break;
       default:
         break;
@@ -225,13 +214,11 @@
       153: "YouTube could not verify this site for playback.",
     };
     const message = errorMessages[event.data] || "YouTube could not play this sound.";
-    setStatus("Playback unavailable");
     showError(message, activeSound);
   }
 
   function handleAutoplayBlocked() {
     setPlayingState(false);
-    setStatus("Press Play to start this sound.");
     showError("Your browser blocked automatic playback. Press Play to continue.", activeSound);
   }
 
@@ -239,11 +226,9 @@
     activeSound = sound;
     updateActiveSound();
     hideError();
-    setStatus(`Loading ${sound.name}…`);
 
     if (!playerReady) {
       pendingSound = sound;
-      setStatus("The player is still loading. Your sound is queued.");
       return;
     }
 
@@ -279,10 +264,6 @@
         control.disabled = disabled;
       },
     );
-  }
-
-  function setStatus(message) {
-    elements.status.textContent = message;
   }
 
   function updateLoopControl() {
@@ -329,14 +310,12 @@
     if (!playerReady) return;
     player.stopVideo();
     setPlayingState(false);
-    setStatus(activeSound ? `${activeSound.name} stopped.` : "Stopped");
   });
 
   elements.loop.addEventListener("click", () => {
     loopEnabled = !loopEnabled;
     updateLoopControl();
     storeLoopPreference();
-    setStatus(`Loop is ${loopEnabled ? "on" : "off"}.`);
   });
 
   elements.volume.addEventListener("input", () => {

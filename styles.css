@@ -99,14 +99,6 @@ a {
   font-size: 1.25rem;
 }
 
-#player-status {
-  font-size: 0.85rem;
-}
-
-#player-status:empty {
-  display: none;
-}
-
 .controls {
   display: flex;
   align-items: center;
