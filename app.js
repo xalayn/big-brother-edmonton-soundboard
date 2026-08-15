@@ -12,11 +12,9 @@
 
   const elements = {
     grid: document.querySelector("#sound-grid"),
-    count: document.querySelector("#sound-count"),
     loading: document.querySelector("#player-loading"),
     nowPlaying: document.querySelector("#now-playing-name"),
     status: document.querySelector("#player-status"),
-    statusLight: document.querySelector("#status-light"),
     restart: document.querySelector("#restart-button"),
     play: document.querySelector("#play-button"),
     playLabel: document.querySelector("#play-label"),
@@ -70,7 +68,6 @@
   }
 
   function renderSoundGrid() {
-    elements.count.textContent = String(sounds.length);
     elements.grid.innerHTML = sounds
       .map(
         (sound, index) => `
@@ -175,7 +172,7 @@
     setControlsDisabled(false);
     player.setVolume(Number(elements.volume.value));
     updateLoopControl();
-    setStatus("Ready — choose a sound.");
+    setStatus("");
 
     if (pendingSound) {
       const sound = pendingSound;
@@ -210,7 +207,7 @@
         break;
       case PLAYER_STATES.CUED:
         setPlayingState(false);
-        setStatus("Ready to play");
+        setStatus("");
         break;
       default:
         break;
@@ -258,7 +255,6 @@
     elements.play.classList.toggle("is-playing", playing);
     elements.playLabel.textContent = playing ? "Pause" : "Play";
     elements.play.setAttribute("aria-label", playing ? "Pause" : "Play");
-    elements.statusLight.classList.toggle("is-on", playing);
     updateActiveSound();
   }
 

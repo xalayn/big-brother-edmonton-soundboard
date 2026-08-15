@@ -61,8 +61,8 @@ window.SOUNDBOARD_SOUNDS = [
   },
   {
     id: "qXKZSFs7O6s",
-    name: "HOH Win — Modern",
-    youtubeTitle: "Big Brother HOH Win Music BB22–Present",
+    name: "HOH Win - Modern",
+    youtubeTitle: "Big Brother HOH Win Music BB22-Present",
     duration: 39,
   },
   {
@@ -85,7 +85,7 @@ window.SOUNDBOARD_SOUNDS = [
   },
   {
     id: "ZnTSx0ekGD0",
-    name: "Live Vote — V2",
+    name: "Live Vote - V2",
     youtubeTitle: "Big Brother Live Vote Music V2",
     duration: 188,
   },

@@ -39,9 +39,7 @@ input:focus-visible {
   font-size: clamp(1.5rem, 5vw, 2rem);
 }
 
-.page-header p,
-.player-info p,
-.section-heading p {
+.player-info p {
   margin: 0;
   color: #6b7280;
 }
@@ -107,18 +105,8 @@ a {
   font-size: 0.85rem;
 }
 
-#status-light {
-  position: absolute;
-  top: 19px;
-  right: 18px;
-  width: 10px;
-  height: 10px;
-  background: #9ca3af;
-  border-radius: 50%;
-}
-
-#status-light.is-on {
-  background: #16a34a;
+#player-status:empty {
+  display: none;
 }
 
 .controls {
@@ -256,13 +244,6 @@ a {
 .sound-card__duration {
   font-size: 0.75rem;
   opacity: 0.75;
-}
-
-footer {
-  padding: 20px 0 32px;
-  color: #6b7280;
-  font-size: 0.8rem;
-  border-top: 1px solid #d1d5db;
 }
 
 noscript {
